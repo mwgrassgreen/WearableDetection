@@ -1,5 +1,5 @@
 # WearableDetection
-WearableDetection is a R package for anomaly detection in heart rates from wearble device. Current version provides algorithms of RHR-Diff (resting heart rate difference offline detection) method and CuSum online detection method for short term data from FitBit smarwatch.
+WearableDetection is a R package for anomaly detection in heart rates from wearble device. Current version provides algorithms of RHR-Diff (resting heart rate difference offline detection) method and CuSum online detection method for short term data from FitBit smartwatch.
 
 
 ## Dependence
