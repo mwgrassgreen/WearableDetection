@@ -9,7 +9,7 @@ WearableDetection is a R package for anomaly detection in heart rates from wearb
 * R function file: "short_term_detection_fn.R"
 
 ## Usage
-`source("../R/short_term_detection_fn.R")`
+`source("./R/short_term_detection_fn.R")`
 
 `library("xts")`
 
@@ -49,7 +49,7 @@ Offline detection result:
 
 `offline.result = rhr.diff.detection.fn(res.t, alpha=0.05)`
 
-`write.csv(offline.result, file="../result/offline_detection.csv" )`
+`write.csv(offline.result, file="./result/offline_detection.csv" )`
 
 Reference: https://github.com/mwgrassgreen/RankScan
 
@@ -59,7 +59,7 @@ Online detection result:
 
 `cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.pval, pval.thres=0.01, max.hour=24, dur.hour=48)`
 
-`write.csv(cusum.alarm.result, file="../result/cusum_online_detection.csv" )`
+`write.csv(cusum.alarm.result, file="./result/cusum_online_detection.csv" )`
 
 --pval.thres The threshold for p-value (default: 0.01).
 
@@ -76,9 +76,9 @@ Visualization of the detection results:
 
 Input data from one participant:
 
-`dir.hr = "../data/AHYIJDV_hr.csv" ` raw heart rate data
+`dir.hr = "./data/AHYIJDV_hr.csv" ` raw heart rate data
 
-`dir.step = "../data/AHYIJDV_step.csv" ` step data
+`dir.step = "./data/AHYIJDV_step.csv" ` step data
 
 Output:
 
