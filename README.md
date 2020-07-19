@@ -81,10 +81,12 @@ Input data from one participant:
 
 `dir.step = "./data/AHYIJDV_step.csv" ` step data
 
-Output:
+Output for detection result:
 
 `../result/offline_detection.csv` offline detection result
 
 `../result/cusum_online_detection.csv` online detection result
 
 `../figure/detetion_plot.pdf` detection plot
+
+The time to run the whole procedure in this example is approximate 16s.
