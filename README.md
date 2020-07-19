@@ -43,7 +43,7 @@ The output from get.stats.fn
 
 `cusum.test.r = stats.result$test.r.seq`sequence of thresholds of the CuSum statistics 
 
-`cusum.risk.score = stats.result$risk.score` sequence of risk.score (1 - pvalue)
+`cusum.pval = stats.result$test.pval` sequence of p-value for CuSum statistics
 
 Offline detection result:
 
@@ -57,15 +57,15 @@ Reference: https://github.com/mwgrassgreen/RankScan
 
 Online detection result:
 
-`cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.risk.score, pval.thres=0.01, dur.hour=48, start.hour=24)`
+`cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.pval, pval.thres=0.01, max.hour=24, dur.hour=48)`
 
 `write.csv(cusum.alarm.result, file="../result/cusum_online_detection.csv" )`
 
 --pval.thres The threshold for p-value (default: 0.01).
 
---dur.hour The threshold for duration hours (default: 48hours).
+--max.hour The threshold for the maximum hour (default: 24hours).
 
---start.hour The threshold for the maxima hour (default: 24hours).
+--dur.hour The threshold for duration hours (default: 48hours).
 
 
 Visualization of the detection results:
