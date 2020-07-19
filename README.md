@@ -4,7 +4,9 @@ WearableDetection is a R package for anomaly detection in heart rates from wearb
 ## Dependence
 * [R](https://www.r-project.org/) (version >= 3.3.0)
 
-R package: "xts"
+* R package: "xts"
+
+* R function file: "short_term_detection_fn.R"
 
 ## Usage
 `source("../R/short_term_detection_fn.R")`
@@ -43,9 +45,21 @@ The output from get.stats.fn
 
 `cusum.risk.score = stats.result$risk.score` sequence of risk.score (1 - pvalue)
 
+Offline detection result:
+
+`offline.result = rhr.diff.detection.fn(res.t, alpha=0.05)`
+
+`write.csv(offline.result, file="../result/offline_detection.csv" )`
+
+Reference: https://github.com/mwgrassgreen/RankScan
+
+--alpha The significance level to control FWER.
+
 Online detection result:
 
 `cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.risk.score, pval.thres=0.01, dur.hour=48, start.hour=24)`
+
+`write.csv(cusum.alarm.result, file="../result/cusum_online_detection.csv" )`
 
 --pval.thres The threshold for p-value (default: 0.01).
 
@@ -54,20 +68,22 @@ Online detection result:
 --start.hour The threshold for the maxima hour (default: 24hours).
 
 
-Offline detection result:
-
-`offline.result = rhr.diff.detection.fn(res.t, alpha=0.05)`
-
-Refer to https://github.com/mwgrassgreen/RankScan
-
---alpha The significance level to control FWER.
-
 Visualization of the detection results:
 
 `result.plot.fn(res.t, cusum.t, cusum.test.r,  offline.result, cusum.alarm.result)` 
 
 ## Example 
 
-cusum.alarm.result 
+Input data from one participant:
 
-offline.result 
+`dir.hr = "../data/AHYIJDV_hr.csv" ` raw heart rate data
+
+`dir.step = "../data/AHYIJDV_step.csv" ` step data
+
+Output:
+
+`../result/offline_detection.csv` offline detection result
+
+`../result/cusum_online_detection.csv` online detection result
+
+`../figure/detetion_plot.pdf` detection plot
