@@ -3,6 +3,7 @@ WearableDetection is a R package for anomaly detection in heart rates from wearb
 
 ## Dependence
 * [R](https://www.r-project.org/) (version >= 3.3.0)
+
 R package: "xts"
 
 ## Usage
@@ -46,15 +47,27 @@ Online detection result:
 
 `cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.risk.score, pval.thres=0.01, dur.hour=48, start.hour=24)`
 
+--pval.thres The threshold for p-value (default: 0.01).
+
+--dur.hour The threshold for duration hours (default: 48hours).
+
+--start.hour The threshold for the maxima hour (default: 24hours).
+
+
 Offline detection result:
 
-`offline.result = rhr.diff.detection.fn(res.t, alpha=0.05, B=1000)`
+`offline.result = rhr.diff.detection.fn(res.t, alpha=0.05)`
 
-Visualization:
+Refer to https://github.com/mwgrassgreen/RankScan
+
+--alpha The significance level to control FWER.
+
+Visualization of the detection results:
 
 `result.plot.fn(res.t, cusum.t, cusum.test.r,  offline.result, cusum.alarm.result)` 
 
 ## Example 
 
 cusum.alarm.result 
+
 offline.result 
