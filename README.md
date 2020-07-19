@@ -81,7 +81,7 @@ Input data from one participant:
 
 `dir.step = "./data/AHYIJDV_step.csv" ` step data
 
-Output for detection results:
+Output of detection results:
 
 `./result/offline_detection.csv` offline detection result
 
