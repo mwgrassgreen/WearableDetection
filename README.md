@@ -14,7 +14,7 @@ WearableDetection is a R package for anomaly detection in heart rates from wearb
 
 `library("xts")`
 
-To obtain residuals and test statistics based on moving baseline in a sliding window
+To obtain residuals and test statistics based on moving baseline sliding window:
 
 `stats.result = get.stats.fn(dir.hr, dir.step, smth.k.par = 10, rest.min.par = 10, base.num.par=28, resol.tm.par=60, test.r.fixed.par=FALSE, test.r.par=NA, res.quan.par=0.9, pval.thres.par=0.01)`
 
@@ -34,7 +34,7 @@ To obtain residuals and test statistics based on moving baseline in a sliding wi
 
 --pval.thres.par The threshold for p-value.
 
-The output from get.stats.fn
+The output from get.stats.fn:
 
 `res.t = stats.result$res.t` sequence of the residuals
 
@@ -46,7 +46,7 @@ The output from get.stats.fn
 
 `cusum.pval = stats.result$test.pval` sequence of p-value for CuSum statistics
 
-Offline detection result:
+To implement offline detection:
 
 `offline.result = rhr.diff.detection.fn(res.t, alpha=0.05)`
 
@@ -56,7 +56,7 @@ Reference: https://github.com/mwgrassgreen/RankScan
 
 --alpha The significance level to control FWER.
 
-Online detection result:
+To implement online detection:
 
 `cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.pval, pval.thres=0.01, max.hour=24, dur.hour=48)`
 
@@ -81,7 +81,7 @@ Input data from one participant:
 
 `dir.step = "./data/AHYIJDV_step.csv" ` step data
 
-Output for detection result:
+Output for detection results:
 
 `./result/offline_detection.csv` offline detection result
 
