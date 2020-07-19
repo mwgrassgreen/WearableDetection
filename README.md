@@ -16,7 +16,7 @@ WearableDetection is a R package for anomaly detection in heart rates from wearb
 
 To obtain residuals and test statistics based on moving baseline in a sliding window
 
-`stats.result = get.stats.fn(dir.hr, dir.step, smth.k.par = 10, rest.min.par = 10, base.num.par=56, resol.tm.par=60, test.r.fixed.par=FALSE, test.r.par=NA, res.quan.par=0.9, pval.thres.par=0.01)`
+`stats.result = get.stats.fn(dir.hr, dir.step, smth.k.par = 10, rest.min.par = 10, base.num.par=28, resol.tm.par=60, test.r.fixed.par=FALSE, test.r.par=NA, res.quan.par=0.9, pval.thres.par=0.01)`
 
 --dir.hr  The working directory for heart rate data.
 
