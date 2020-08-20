@@ -1,5 +1,5 @@
 # WearableDetection
-WearableDetection is a R package for anomaly detection in heart rates from wearble device. Current version provides algorithms of RHR-Diff (resting heart rate difference offline detection) method and CuSum online detection method for short term data from FitBit smartwatch.
+WearableDetection is a R package for anomaly detection in heart rates from wearble device. Current version provides algorithms of RHR-Diff (resting heart rate difference offline detection) method and CuSum online detection method for wearable data from FitBit smartwatch.
 
 
 ## Dependence
@@ -7,20 +7,22 @@ WearableDetection is a R package for anomaly detection in heart rates from wearb
 
 * R package: "xts"
 
-* R function file: "short_term_detection_fn.R"
+* R function file: "detection_fn.R"
 
 ## Usage
-`source("./R/short_term_detection_fn.R")`
+`source("./R/detection_fn.R")`
 
 `library("xts")`
 
 To obtain residuals and test statistics based on moving baseline sliding window:
 
-`stats.result = get.stats.fn(dir.hr, dir.step, smth.k.par = 10, rest.min.par = 10, base.num.par=28, resol.tm.par=60, test.r.fixed.par=FALSE, test.r.par=NA, res.quan.par=0.9, pval.thres.par=0.01)`
+`stats.result = get.stats.fn(dir.hr, dir.step, start.day=NULL, smth.k.par = 10, rest.min.par = 10, base.num.par=28, resol.tm.par=60, test.r.fixed.par=FALSE, test.r.par=NA, res.quan.par=0.9, pval.thres.par=0.01)`
 
 --dir.hr  The working directory for heart rate data.
 
 --dir.step The working directory for step data.
+
+--start.day The starting day for detection.
 
 --smth.k.par The moving average time windonw (default: 10min).
 
@@ -32,7 +34,7 @@ To obtain residuals and test statistics based on moving baseline sliding window:
 
 --test.r.fixed.par, test.r.par, res.quan.par The threshold in the CuSum statistics. If test.r.fixed.par is FALSE, the threshold is based on the parameter res.quan.par; otherwise, the threshold is based on the parameter test.r.par (default: test.r.fixed.par=FALSE, test.r.par=NA, res.quan.par=0.9).
 
---pval.thres.par The threshold for p-value.
+--pval.thres.par The threshold for p-value (default: 0.01).
 
 The output from get.stats.fn:
 
@@ -50,7 +52,7 @@ To implement offline detection:
 
 `offline.result = rhr.diff.detection.fn(res.t, alpha=0.05)`
 
-`write.csv(offline.result, file="./result/offline_detection.csv" )`
+`write.csv(offline.result, file="./result/RHRDiff_offline_detection.csv" )`
 
 Reference: https://github.com/mwgrassgreen/RankScan
 
@@ -60,7 +62,7 @@ To implement online detection:
 
 `cusum.alarm.result = cusum.detection.fn(cusum.t, cusum.t.ind, cusum.pval, pval.thres=0.01, max.hour=24, dur.hour=48)`
 
-`write.csv(cusum.alarm.result, file="./result/cusum_online_detection.csv" )`
+`write.csv(cusum.alarm.result, file="./result/CuSum_online_detection.csv" )`
 
 --pval.thres The threshold for p-value (default: 0.01).
 
@@ -71,7 +73,10 @@ To implement online detection:
 
 Visualization of the detection results:
 
-`result.plot.fn(res.t, cusum.t, cusum.test.r,  offline.result, cusum.alarm.result)` 
+`result.plot.fn(id, sym.date=NA, diag.date=NA,  res.t, cusum.t, cusum.test.r, offline.result, cusum.alarm.result)`
+
+--id The participant id.
+
 
 ## Example 
 
@@ -81,11 +86,13 @@ Input data from one participant:
 
 `dir.step = "./data/AHYIJDV_step.csv" ` step data
 
+`id = "AHYIJDV" `
+
 Output of detection results:
 
-`./result/offline_detection.csv` offline detection result
+`./result/RHRDiff_offline_detection.csv` offline detection result
 
-`./result/cusum_online_detection.csv` online detection result
+`./result/CuSum_online_detection.csv` online detection result
 
 `./figure/detetion_plot.pdf` detection plot
 
